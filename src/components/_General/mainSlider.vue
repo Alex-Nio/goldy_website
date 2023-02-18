@@ -1,0 +1,228 @@
+<template>
+  <section>
+    <div class="wrapper">
+      <swiper
+        :modules="modules"
+        @swiper="swiper = $event"
+        :loop="sliderOptions.loop"
+        :speed="sliderOptions.autoplay.speed"
+        :autoplay="sliderOptions.autoplay.autoplay"
+        :freemode="sliderOptions.freeMode"
+        :slidesPerView="sliderOptions.slidesPerView"
+        :navigation="sliderOptions.navigation"
+        :preloadImages="sliderOptions.preloadImages"
+        :lazy="sliderOptions.lazy"
+        pagination
+        class="goldy-main-slider"
+      >
+        <swiper-slide class="goldy-main-slider__slide">
+          <div class="goldy-slide">
+            <div class="goldy-slide__inner">
+              <div class="goldy-slide__discount">
+                <span class="goldy-slide__discount--small">Суперскидка до 60%</span>
+                <span class="goldy-slide__discount--large">НА БРИЛЛИАНТЫ</span>
+                <button class="g-btn g-btn-dark g-btn--small">Подробнее</button>
+              </div>
+              <div class="goldy-slide__image">
+                <img src="@/assets/img/slider/slide1.png" alt="Slide image" />
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide class="goldy-main-slider__slide">2</swiper-slide>
+        <swiper-slide class="goldy-main-slider__slide">3</swiper-slide>
+        <div class="goldy-slider-navigation">
+          <button
+            ref="PrevBtn"
+            @click="prev"
+            class="swiper-button-prev navigation__prev"
+          ></button>
+          <button
+            ref="NextBtn"
+            @click="next"
+            class="swiper-button-next navigation__next"
+          ></button>
+        </div>
+      </swiper>
+    </div>
+  </section>
+</template>
+<script>
+// import Swiper core and required modules
+import { Navigation, Pagination, A11y } from "swiper";
+
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from "swiper/vue";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+// Import Swiper styles
+export default {
+  data() {
+    return {
+      sliderOptions: {
+        slidesPerView: 1,
+        preloadImages: false,
+        lazy: true,
+        freeMode: true,
+        autoplay: {
+          speed: 350,
+          autoplay: true,
+        },
+        loop: true,
+        Navigation: {
+          nextEl: this.$refs.NextBtn,
+          prevEl: this.$refs.PrevBtn,
+        },
+      },
+    };
+  },
+  methods: {
+    next() {
+      this.swiper.slideNext();
+    },
+
+    prev() {
+      this.swiper.slidePrev();
+    },
+  },
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Navigation, Pagination, A11y],
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+@import "@/assets/scss/imports.scss";
+
+.goldy-main-slider {
+  height: 100%;
+  min-height: 560px;
+  max-height: 560px;
+  background-color: #f8f8f8;
+  margin-top: 20px;
+}
+
+.goldy-main-slider__slide {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  min-height: 560px;
+  background: url("@/assets/img/slider/slider-bg-image.svg") no-repeat -15px 20px / contain;
+}
+
+.goldy-slide {
+  width: 100%;
+  &__inner {
+    @include fdrjsb_aic;
+    margin-bottom: 3px;
+  }
+
+  &__discount {
+    @include fdcjs_ais;
+    @include fs($ff_P, 20px, $primary, 400);
+    margin-left: 126px;
+    min-width: 491px;
+  }
+
+  &__discount--large {
+    @include fs($ff_P, 50px, $primary, 400);
+    margin: 30px 0 54px 0;
+  }
+}
+
+.goldy-slide__image {
+  margin-right: 35px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 24px;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--swiper-pagination-color, #303030);
+}
+
+.swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+  background: transparent;
+  box-shadow: 0px 0px 0px 1px #000 inset;
+  opacity: 1;
+}
+
+.goldy-slider-navigation {
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: transparent;
+  &:after {
+    display: none;
+  }
+}
+
+.navigation__prev,
+.navigation__next {
+  width: 54px;
+  height: 54px;
+  border: 1px solid $primary;
+  border-radius: 50%;
+  background-color: #f8f8f8;
+  @include tr;
+
+  &:hover {
+    background-color: #f5f5f5;
+    @include tr;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: url("@/assets/img/icons/slider-arrow.svg") no-repeat center;
+  }
+}
+
+.navigation {
+  &__prev {
+    &::before {
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:active {
+      &::before {
+        left: calc(50% - 8px);
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &__next {
+    &::before {
+      left: 50%;
+      transform: translate(-50%, -50%) scale(-1, 1);
+    }
+
+    &:active {
+      &::before {
+        left: calc(50% + 8px);
+        transform: translate(-50%, -50%) scale(-1, 1);
+      }
+    }
+  }
+}
+</style>
