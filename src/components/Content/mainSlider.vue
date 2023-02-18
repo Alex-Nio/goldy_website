@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="discount-section">
     <div class="wrapper">
       <swiper
         :modules="modules"

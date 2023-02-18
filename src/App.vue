@@ -1,17 +1,17 @@
 <template>
   <div class="full-wrapper">
     <div class="goldy-container">
-      <main-nav></main-nav>
+      <main-header></main-header>
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import mainNav from "@/components/_General/mainNav";
+import mainHeader from "@/components/_General/mainHeader";
 export default {
   components: {
-    mainNav,
+    mainHeader,
   },
 };
 </script>
