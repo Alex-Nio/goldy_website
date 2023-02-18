@@ -198,4 +198,34 @@ export default {
     display: none;
   }
 }
+
+@media screen and (max-width: 920px) {
+  .goldy-slide__image {
+    display: none;
+  }
+
+  .goldy-slide__discount {
+    margin: 0 auto;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .goldy-slide__discount {
+    min-width: 100%;
+  }
+  .goldy-slide__discount--large {
+    font-size: 34px;
+  }
+}
+
+@media screen and (max-width: 386px) {
+  .goldy-slide__discount--large {
+    font-size: 24px;
+  }
+
+  .goldy-slider-navigation {
+    display: none;
+  }
+}
 </style>

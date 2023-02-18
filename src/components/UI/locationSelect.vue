@@ -89,8 +89,9 @@ export default {
   ul {
     width: 100%;
     max-width: 197px;
+    min-width: 197px;
     list-style-type: none;
-    padding-top: 24px;
+    padding: 24px 0;
     margin-top: 12px;
     font-family: "Inter";
     font-style: normal;

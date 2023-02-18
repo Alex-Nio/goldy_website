@@ -185,11 +185,19 @@ export default {};
     flex: 0 0 calc(100% / 2);
     max-width: calc(100% / 2);
   }
+
+  .popular-products-title {
+    font-size: 34px;
+  }
 }
 
 @media screen and (max-width: 460px) {
   .popular-product {
     width: 130px;
+  }
+
+  .popular-products-title {
+    font-size: 26px;
   }
 }
 

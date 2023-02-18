@@ -234,6 +234,27 @@ textarea {
     }
 }
 
+@media screen and (max-width: 678px) {
+
+    .navigation__prev,
+    .navigation__next {
+        border: none;
+        background: transparent;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    .navigation__prev {
+        left: var(--swiper-navigation-sides-offset, -10px);
+    }
+
+    .navigation__next {
+        right: var(--swiper-navigation-sides-offset, -10px);
+    }
+}
+
 // ------------------------------------------------
 // -----------------KEYFRAMES----------------------
 // ------------------------------------------------

@@ -50,4 +50,8 @@ export default {
     margin-left: 10px;
   }
 }
+
+@media screen and (max-width: 991px) {
+  
+}
 </style>

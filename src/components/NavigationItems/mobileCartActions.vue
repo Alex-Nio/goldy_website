@@ -1,10 +1,10 @@
 <template>
-  <div class="cart-actions">
-    <ul class="cart-actions__list">
+  <div class="mobile-cart-actions">
+    <ul class="mobile-cart-actions__list">
       <li
         v-for="(item, i) in cartActionsItems"
         :key="item"
-        class="cart-actions__list-item"
+        class="mobile-cart-actions__list-item"
       >
         <a :class="cartActionsItems[i]['dafaultClass']" href="#">
           <img
@@ -16,47 +16,32 @@
           </span>
         </a>
       </li>
-      <li class="cart-actions__list-item">
-        <button
-          @click.stop="mobileMenuToggle"
-          class="g-burger-btn"
-          :class="{ active: burgerOpen }"
-        ></button>
-      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["cartActionsItems", "burgerOpen"],
+  props: ["cartActionsItems"],
   data() {
     return {};
-  },
-  methods: {
-    mobileMenuToggle() {
-      this.$emit("mobileMenuToggle");
-    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/imports.scss";
-.cart-actions {
+.mobile-cart-actions {
   width: 100%;
   @include fdrje_aic;
   &__list {
     @include fdrjsb_aic;
+    display: none;
   }
 
   &__list-item {
     &:nth-child(1) {
       margin-right: 2px;
-    }
-
-    &:nth-child(2) {
-      margin: 0 28px;
     }
   }
 }
@@ -104,22 +89,6 @@ export default {
 
   &.active {
     background: url("@/assets/img/icons/close-icon.svg") no-repeat center / contain;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  .g-burger-btn {
-    display: block;
-  }
-}
-
-@media screen and (max-width: 620px) {
-  .cart-actions__list-item:not(:last-child) {
-    display: none;
-  }
-
-  .g-burger-btn {
-    margin-left: 0;
   }
 }
 </style>

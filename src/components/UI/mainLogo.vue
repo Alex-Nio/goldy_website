@@ -48,4 +48,13 @@ export default {};
     }
   }
 }
+
+@media screen and (max-width: 991px) {
+  .goldy-logo {
+    margin-right: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 </style>

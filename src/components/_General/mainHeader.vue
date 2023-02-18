@@ -1,5 +1,10 @@
 <template>
-  <header id="header" class="goldy-header">
+  <header
+    id="header"
+    class="goldy-header"
+    :class="{ 'on-scroll': headerScrolling }"
+    @click.stop
+  >
     <div class="goldy-header__content">
       <div class="content-top">
         <div class="content-top__item">
@@ -15,7 +20,11 @@
           <signup-actions :signupButtons="signupButtons"></signup-actions>
         </div>
         <div class="content-top__item">
-          <cart-actions :cartActionsItems="cartActionsItems"></cart-actions>
+          <cart-actions
+            @mobileMenuToggle="mobileMenuToggle"
+            :cartActionsItems="cartActionsItems"
+            :burgerOpen="burgerOpen"
+          ></cart-actions>
         </div>
       </div>
       <div class="content-bottom">
@@ -39,9 +48,33 @@
               />
             </label>
           </div>
+          <div class="goldy-mobile-signup">
+            <signup-actions
+              class="mobile-signup-btns"
+              :signupButtons="signupButtons"
+            ></signup-actions>
+          </div>
         </nav>
       </div>
     </div>
+    <transition
+      mode="in-out"
+      enter-active-class="animate__animated animate__fadeInUp"
+      leave-active-class="animate__animated animate__fadeOutDown"
+    >
+      <mobile-menu
+        :phoneNumber="phoneNumber"
+        :signupButtons="signupButtons"
+        :cartActionsItems="cartActionsItems"
+      ></mobile-menu>
+    </transition>
+    <transition
+      mode="in-out"
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
+    >
+      <mobile-menu-navigation :menuActive="menuActive"></mobile-menu-navigation>
+    </transition>
   </header>
 </template>
 
@@ -51,8 +84,11 @@ import phoneLink from "@/components/UI/phoneLink";
 import locationSelect from "@/components/UI/locationSelect";
 import signupActions from "@/components/NavigationItems/signupActions";
 import cartActions from "@/components/NavigationItems/cartActions";
+import mobileMenu from "@/components/NavigationItems/mobileMenu";
+import mobileMenuNavigation from "@/components/NavigationItems/mobileMenuNavigation";
 
 export default {
+  props: ["burgerOpen", "menuActive", "headerScrolling"],
   data() {
     return {
       phoneNumber: "8 800 785-25-35",
@@ -83,6 +119,13 @@ export default {
     locationSelect,
     signupActions,
     cartActions,
+    mobileMenu,
+    mobileMenuNavigation,
+  },
+  methods: {
+    mobileMenuToggle() {
+      this.$emit("mobileMenuToggle");
+    },
   },
 };
 </script>
@@ -93,9 +136,40 @@ export default {
 .goldy-header {
   position: relative;
   margin-top: 30px;
+  background-color: $white;
   z-index: 50;
   &__content {
     @include fdcjc_aic;
+  }
+
+  &.on-scroll {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 0;
+    background-color: $white;
+    z-index: 60;
+
+    & .goldy-header__content {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    & .goldy-navigation {
+      padding: 10px 50px;
+      transition: padding 0.3s linear;
+    }
+
+    & .goldy-header__content {
+      padding: 30px 0 15px 0;
+    }
+
+    & .goldy-search {
+      &:before {
+        display: none;
+      }
+    }
   }
 }
 
@@ -131,6 +205,7 @@ export default {
   margin-top: 12px;
   padding: 24px 50px;
   background-color: #f8f8f8;
+  transition: padding 0.3s linear;
   &__list {
     @include fdrjs_aic;
     width: 100%;
@@ -151,17 +226,6 @@ export default {
     &:last-child {
       margin-right: 5px;
     }
-  }
-}
-
-// Media for burger menu
-@media screen and (max-width: 991px) {
-  .goldy-navigation__list {
-    display: none;
-  }
-
-  .goldy-navigation {
-    justify-content: flex-end;
   }
 }
 
@@ -205,6 +269,71 @@ export default {
     font-weight: 400;
     font-size: 14px;
     line-height: 100%;
+  }
+}
+
+.goldy-mobile-signup,
+.mobile-signup-btns {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .goldy-navigation__list {
+    margin-right: 20px;
+  }
+  .goldy-search {
+    margin-right: 0;
+  }
+}
+
+// Media for burger menu
+@media screen and (max-width: 991px) {
+  .goldy-navigation__list {
+    display: none;
+  }
+
+  .goldy-navigation {
+    justify-content: flex-end;
+  }
+
+  .content-top__item:nth-child(1),
+  .content-top__item:nth-child(2),
+  .content-top__item:nth-child(4) {
+    display: none;
+  }
+
+  .content-top__item:nth-child(3) {
+    width: 100%;
+  }
+
+  .goldy-search {
+    width: 100%;
+    max-width: 100%;
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .goldy-mobile-signup,
+  .mobile-signup-btns {
+    display: flex;
+  }
+  .content-top__item:nth-child(5) {
+    width: 20px;
+    max-width: 20px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .mobile-signup-btns {
+    display: none;
+  }
+
+  .goldy-search label > input {
+    width: 100%;
+    max-width: 100%;
   }
 }
 </style>
