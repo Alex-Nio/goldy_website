@@ -37,3 +37,7 @@
 @mixin tr() {
 	transition: all 0.3s linear;
 }
+
+@mixin tr-fast() {
+	transition: all 0.1s ease-in-out;
+}

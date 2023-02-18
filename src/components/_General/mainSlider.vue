@@ -15,6 +15,7 @@
         pagination
         class="goldy-main-slider"
       >
+        <!-- Slide -->
         <swiper-slide class="goldy-main-slider__slide">
           <div class="goldy-slide">
             <div class="goldy-slide__inner">
@@ -29,8 +30,36 @@
             </div>
           </div>
         </swiper-slide>
-        <swiper-slide class="goldy-main-slider__slide">2</swiper-slide>
-        <swiper-slide class="goldy-main-slider__slide">3</swiper-slide>
+        <!-- Slide -->
+        <swiper-slide class="goldy-main-slider__slide">
+          <div class="goldy-slide">
+            <div class="goldy-slide__inner">
+              <div class="goldy-slide__discount">
+                <span class="goldy-slide__discount--small">Суперскидка до 60%</span>
+                <span class="goldy-slide__discount--large">НА БРИЛЛИАНТЫ</span>
+                <button class="g-btn g-btn-dark g-btn--small">Подробнее</button>
+              </div>
+              <div class="goldy-slide__image">
+                <img src="@/assets/img/slider/slide1.png" alt="Slide image" />
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+        <!-- Slide -->
+        <swiper-slide class="goldy-main-slider__slide">
+          <div class="goldy-slide">
+            <div class="goldy-slide__inner">
+              <div class="goldy-slide__discount">
+                <span class="goldy-slide__discount--small">Суперскидка до 60%</span>
+                <span class="goldy-slide__discount--large">НА БРИЛЛИАНТЫ</span>
+                <button class="g-btn g-btn-dark g-btn--small">Подробнее</button>
+              </div>
+              <div class="goldy-slide__image">
+                <img src="@/assets/img/slider/slide1.png" alt="Slide image" />
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
         <div class="goldy-slider-navigation">
           <button
             ref="PrevBtn"
@@ -162,67 +191,11 @@ export default {
   opacity: 1;
 }
 
-.goldy-slider-navigation {
-}
 .swiper-button-prev,
 .swiper-button-next {
   background-color: transparent;
   &:after {
     display: none;
-  }
-}
-
-.navigation__prev,
-.navigation__next {
-  width: 54px;
-  height: 54px;
-  border: 1px solid $primary;
-  border-radius: 50%;
-  background-color: #f8f8f8;
-  @include tr;
-
-  &:hover {
-    background-color: #f5f5f5;
-    @include tr;
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    background: url("@/assets/img/icons/slider-arrow.svg") no-repeat center;
-  }
-}
-
-.navigation {
-  &__prev {
-    &::before {
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    &:active {
-      &::before {
-        left: calc(50% - 8px);
-        transform: translate(-50%, -50%);
-      }
-    }
-  }
-
-  &__next {
-    &::before {
-      left: 50%;
-      transform: translate(-50%, -50%) scale(-1, 1);
-    }
-
-    &:active {
-      &::before {
-        left: calc(50% + 8px);
-        transform: translate(-50%, -50%) scale(-1, 1);
-      }
-    }
   }
 }
 </style>
