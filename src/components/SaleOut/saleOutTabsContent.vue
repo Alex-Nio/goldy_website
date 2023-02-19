@@ -1,6 +1,18 @@
 <template>
   <div class="sale-tab">
     <div class="sale-tab__content">
+      <div class="sale-tab__navigation">
+        <button
+          ref="PrevBtn"
+          @click="prev"
+          class="sale-tab__navigation-btn swiper-button-prev navigation__prev"
+        ></button>
+        <button
+          ref="NextBtn"
+          @click="next"
+          class="sale-tab__navigation-btn swiper-button-next navigation__next"
+        ></button>
+      </div>
       <swiper
         :modules="modules"
         @swiper="swiper = $event"
@@ -23,7 +35,7 @@
           :key="i"
           class="sale-tab-slider__item"
         >
-          <div class="sale-product" :class="{ active: active }">
+          <div class="sale-product">
             <div v-if="item.badges" class="badges">
               <span
                 v-for="badge in item.badges"
@@ -61,12 +73,12 @@
                 <div v-if="item.label" class="sale-prices__label">{{ item.label }}</div>
               </div>
               <div class="sale-product__description">
-                <p>{{ item.description }}</p>
+                <a @click.prevent href="#">{{ item.description }}</a>
               </div>
 
               <div class="sale-options">
-                <material-select @click.stop="switchHeight"></material-select>
-                <size-select @click.stop="switchHeight"></size-select>
+                <material-select @click.stop="switchHeight(i)"></material-select>
+                <size-select @click.stop="switchHeight(i)"></size-select>
               </div>
             </div>
           </div>
@@ -95,6 +107,7 @@ export default {
   data() {
     return {
       active: false,
+      currentIndex: null,
       sliderOptions: {
         slidesPerView: 4,
         spaceBetweenSlides: 20,
@@ -148,8 +161,9 @@ export default {
       event.target.parentElement.classList.toggle("active");
     },
 
-    switchHeight() {
+    switchHeight(i) {
       this.active = !this.active;
+      this.currentIndex = i;
     },
   },
   components: {
@@ -172,7 +186,8 @@ export default {
 .sale-tab {
   width: 100%;
   &__content {
-    margin-top: 50px;
+    position: relative;
+    margin-top: 36px;
   }
 }
 .sale-tab-slider {
@@ -180,11 +195,14 @@ export default {
 
   &__item {
     position: relative;
+    width: 100%;
     height: 100%;
     min-height: 370px;
-    width: 100%;
     background-color: $white;
     border: 1px solid #f0f0f0;
+
+    //! Overflow hidden fix for selects
+    margin-bottom: 300px;
   }
 }
 .sale-product {
@@ -195,11 +213,6 @@ export default {
   max-width: 310px;
   min-width: 310px;
   padding: 16px 20px 26px 24px;
-
-  &.active {
-    // Высота настраивается в зависимости от высоты ul в селекте
-    margin-bottom: 150px;
-  }
 
   &:hover {
     & .sale-options {
@@ -242,6 +255,7 @@ export default {
 
   &__bottom {
     @include fdcjc_ais;
+    width: 100%;
   }
 
   &__description {
@@ -255,6 +269,7 @@ export default {
   position: absolute;
   top: 16px;
   left: 24px;
+  z-index: 10;
 }
 .badge {
   @include fs($ff_I, 13px, $white, 500);
@@ -327,6 +342,34 @@ export default {
   & > div:first-child {
     margin-bottom: 10px;
     z-index: 120;
+  }
+}
+
+.sale-tab__navigation {
+  position: relative;
+  width: 116px;
+  height: 54px;
+}
+
+.sale-tab {
+  &__navigation {
+    position: absolute;
+    top: -90px;
+    right: 0;
+  }
+}
+
+.sale-tab__navigation-btn {
+  background-color: $white !important;
+}
+
+.navigation {
+  &__prev {
+    left: 0;
+  }
+
+  &__next {
+    right: 0;
   }
 }
 </style>

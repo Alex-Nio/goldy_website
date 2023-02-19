@@ -88,16 +88,10 @@ export default {};
 
 <style lang="scss" scoped>
 @import "@/assets/scss/imports.scss";
-.wrapper {
-}
 .popular-products {
   &__inner {
     margin-top: 120px;
   }
-}
-.popular-products-content {
-}
-.section-title {
 }
 .popular-products-title {
   @include fs($ff_P, 40px, $primary, 400);

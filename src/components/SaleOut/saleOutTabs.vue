@@ -29,13 +29,41 @@ export default {
 @import "@/assets/scss/imports.scss";
 .sale-out-tabs {
   &__list {
-    @include fdrjc_aic;
-    font-size: 3rem;
-    margin-top: 100px;
+    @include fdrjs_aic;
+    margin-top: 24px;
   }
 
   &__list-item {
-    margin: 0 20px;
+    @include fs($ff_I, 14px, $primary, 400);
+    padding: 13px 30px;
+    background-color: $tab-default;
+    border-radius: 21px;
+    margin: 0 4px;
+    cursor: pointer;
+    @include tr-default;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      background-color: $tab-hover;
+      @include tr-default;
+    }
+
+    &:active {
+      background-color: $tab-active;
+    }
+
+    &.active {
+      color: $white;
+      background-color: $tab-active;
+      @include tr-default;
+    }
   }
 }
 </style>
