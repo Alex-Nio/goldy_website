@@ -200,13 +200,24 @@ export default {
 }
 
 @media screen and (max-width: 920px) {
+  .goldy-slide__inner {
+    flex-direction: column-reverse;
+  }
+
   .goldy-slide__image {
-    display: none;
+    max-width: 200px;
+    margin: 0 0 20px 0;
   }
 
   .goldy-slide__discount {
     margin: 0 auto;
     align-items: center;
+  }
+}
+
+@media screen and (max-width: 678px) {
+  .goldy-slide__image {
+    max-width: 140px;
   }
 }
 

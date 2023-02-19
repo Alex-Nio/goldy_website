@@ -47,7 +47,7 @@ export default {
   }
 
   &__list-item {
-    @include fs($ff_I, 24px, $white, 400);
+    @include fs($ff_I, 28px, $white, 600);
     text-align: center;
     margin: 4px 0;
   }

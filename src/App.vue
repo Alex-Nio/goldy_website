@@ -32,7 +32,6 @@ export default {
       this.burgerOpen = !this.burgerOpen;
       const body = document.querySelector("body");
       body.classList.toggle("locked");
-      console.log("click");
     },
     mobileMenuClose() {
       this.menuActive = false;

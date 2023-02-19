@@ -198,6 +198,15 @@ export default {};
 
   .popular-products-title {
     font-size: 26px;
+    text-align: center;
+  }
+
+  .popular-product {
+    &:hover {
+      & .popular-product-image img {
+        transform: scale(1.2);
+      }
+    }
   }
 }
 
