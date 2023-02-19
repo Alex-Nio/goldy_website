@@ -42,11 +42,7 @@ export default {
           name: "Кольца",
           items: [
             {
-              badges: [
-                { type: "sale", name: "sale" },
-                { type: "hit", name: "хит" },
-                { type: "new", name: "new" },
-              ],
+              badges: [{ type: "sale", name: "sale" }],
               currentPrice: "41 000 ₽",
               discount: "65 000 ₽",
               label: "-45%",
@@ -92,14 +88,14 @@ export default {
               description: "Стильное кольцо из белого золота c бриллиантами",
             },
             {
-              badges: null,
+              badges: [{ type: "new", name: "new" }],
               currentPrice: "37 500 ₽",
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
             },
             {
-              badges: null,
+              badges: [{ type: "hit", name: "хит" }],
               currentPrice: "39 200 ₽",
               discount: null,
               label: null,

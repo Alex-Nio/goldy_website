@@ -5,6 +5,7 @@
         :modules="modules"
         @swiper="swiper = $event"
         :speed="sliderOptions.autoplay.speed"
+        :grabCursor="sliderOptions.grabCursor"
         :spaceBetween="sliderOptions.spaceBetweenSlides"
         :loop="sliderOptions.loop"
         :autoplay="sliderOptions.autoplay.autoplay"
@@ -15,7 +16,6 @@
         :lazy="sliderOptions.lazy"
         :breakpoints="sliderOptions.breakpoints"
         class="sale-tab-slider"
-        @click.prevent.stop
       >
         <!-- Slide -->
         <swiper-slide
@@ -23,7 +23,7 @@
           :key="i"
           class="sale-tab-slider__item"
         >
-          <div class="sale-product">
+          <div class="sale-product" :class="{ active: active }">
             <div v-if="item.badges" class="badges">
               <span
                 v-for="badge in item.badges"
@@ -63,6 +63,11 @@
               <div class="sale-product__description">
                 <p>{{ item.description }}</p>
               </div>
+
+              <div class="sale-options">
+                <material-select @click.stop="switchHeight"></material-select>
+                <size-select @click.stop="switchHeight"></size-select>
+              </div>
             </div>
           </div>
         </swiper-slide>
@@ -82,16 +87,19 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-import SaleProductPreview from "@/components/SaleOut/SaleProduct/saleProductPreview.vue";
-
+import SaleProductPreview from "@/components/SaleOut/SaleProduct/saleProductPreview";
+import materialSelect from "@/components/UI/materialSelect";
+import sizeSelect from "@/components/UI/sizeSelect";
 export default {
   props: ["activeTab", "tabsData"],
   data() {
     return {
+      active: false,
       sliderOptions: {
         slidesPerView: 4,
         spaceBetweenSlides: 20,
         preloadImages: false,
+        grabCursor: true,
         loop: true,
         lazy: false,
         freeMode: true,
@@ -139,11 +147,17 @@ export default {
     toggleClass(event) {
       event.target.parentElement.classList.toggle("active");
     },
+
+    switchHeight() {
+      this.active = !this.active;
+    },
   },
   components: {
     Swiper,
     SwiperSlide,
     SaleProductPreview,
+    materialSelect,
+    sizeSelect,
   },
   setup() {
     return {
@@ -166,11 +180,9 @@ export default {
 
   &__item {
     position: relative;
-    // @include fdcjsb_aic;
     height: 100%;
     min-height: 370px;
     width: 100%;
-    // max-width: 310px;
     background-color: $white;
     border: 1px solid #f0f0f0;
   }
@@ -183,6 +195,17 @@ export default {
   max-width: 310px;
   min-width: 310px;
   padding: 16px 20px 26px 24px;
+
+  &.active {
+    // Высота настраивается в зависимости от высоты ul в селекте
+    margin-bottom: 150px;
+  }
+
+  &:hover {
+    & .sale-options {
+      display: flex;
+    }
+  }
 
   &__actions {
     @include fdcjc_aic;
@@ -291,6 +314,19 @@ export default {
     padding: 4px 11px 4px 12px;
     border-radius: 15px;
     background-color: $label;
+    cursor: default;
+  }
+}
+
+.sale-options {
+  @include fdcjc_aic;
+  display: none;
+  margin-top: 24px;
+  animation: fadeIn 0.4s linear;
+
+  & > div:first-child {
+    margin-bottom: 10px;
+    z-index: 120;
   }
 }
 </style>
