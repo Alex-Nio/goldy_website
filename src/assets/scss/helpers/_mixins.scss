@@ -41,3 +41,14 @@
 @mixin tr-fast() {
 	transition: all 0.1s ease-in-out;
 }
+
+@mixin tr-default() {
+	transition: all 0.5s linear;
+}
+
+@mixin baze-hover($color) {
+	&:hover {
+		background-color: darken($color: $color, $amount: 8%);
+		@include tr-default;
+	}
+}
