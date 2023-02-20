@@ -66,7 +66,7 @@ export default {
 
   & > span {
     position: absolute;
-    display: inline-flex;
+    display: inline-block;
     justify-content: center;
     top: 9px;
     right: -28px;
