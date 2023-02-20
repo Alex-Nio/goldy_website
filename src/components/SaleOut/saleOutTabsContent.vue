@@ -201,7 +201,7 @@ export default {
     border: 1px solid #f0f0f0;
 
     //! Overflow hidden fix for selects
-    margin-bottom: 300px;
+    margin-bottom: 120px;
   }
 }
 

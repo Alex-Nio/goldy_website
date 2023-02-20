@@ -1,10 +1,5 @@
 <template>
-  <header
-    id="header"
-    class="goldy-header"
-    :class="{ 'on-scroll': headerScrolling }"
-    @click.stop
-  >
+  <header id="header" class="goldy-header" @click.stop>
     <div class="goldy-header__content">
       <div class="content-top">
         <div class="content-top__item">
