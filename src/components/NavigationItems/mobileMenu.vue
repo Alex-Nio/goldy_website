@@ -5,9 +5,9 @@
         <div class="m-menu">
           <ul class="m-menu__list">
             <li class="m-menu__item">
-              <div class="user-signup">
+              <a class="user-signup">
                 <img src="@/assets/img/icons/login-icon.svg" alt="Signup" />
-              </div>
+              </a>
             </li>
             <li class="m-menu__item">
               <signup-actions :signupButtons="signupButtons"></signup-actions>

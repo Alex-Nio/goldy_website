@@ -58,7 +58,9 @@
             </div>
 
             <div class="sale-product__top" @click.prevent.stop>
-              <sale-product-preview :previewImages="item.previewImages"></sale-product-preview>
+              <sale-product-preview
+                :previewImages="item.previewImages"
+              ></sale-product-preview>
             </div>
 
             <div class="sale-product__bottom">
@@ -200,6 +202,12 @@ export default {
     margin-bottom: 300px;
   }
 }
+
+.swiper-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .sale-product {
   @include fdcje_aic;
   height: 100%;
