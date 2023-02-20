@@ -66,10 +66,8 @@ export default {
 
   & > span {
     position: absolute;
-    display: inline-block;
-    justify-content: center;
-    top: 9px;
-    right: -28px;
+    top: -5px;
+    right: -8px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 700;
