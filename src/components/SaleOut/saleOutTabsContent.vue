@@ -1,5 +1,5 @@
 <template>
-  <div class="sale-tab">
+  <div class="sale-tab" @click="toggleSelects($event)">
     <div class="sale-tab__content">
       <div class="sale-tab__navigation">
         <button
@@ -34,7 +34,7 @@
           :key="i"
           class="sale-tab-slider__item"
         >
-          <div class="sale-product">
+          <div class="sale-product" @click="toggleSelects($event)">
             <div v-if="item.badges" class="badges">
               <span
                 v-for="badge in item.badges"
@@ -57,7 +57,7 @@
               </button>
             </div>
 
-            <div class="sale-product__top" @click.prevent.stop>
+            <div class="sale-product__top">
               <sale-product-preview
                 :previewImages="item.previewImages"
               ></sale-product-preview>
@@ -158,6 +158,25 @@ export default {
       event.target.parentElement.classList.toggle("active");
     },
 
+    toggleSelects(event) {
+      let all = document.querySelectorAll(".sale-product");
+      let bannersSection = document.getElementById("banners");
+
+      all.forEach((item) => {
+        item.classList.remove("active");
+        bannersSection.style.marginTop = "0px";
+      });
+
+      all.forEach((item) => {
+        if (item.contains(event.target)) {
+          item.classList.add("active");
+          bannersSection.style.marginTop = "-65px";
+        } else {
+          item.classList.remove("active");
+        }
+      });
+    },
+
     switchHeight(i) {
       this.active = !this.active;
       this.currentIndex = i;
@@ -214,8 +233,8 @@ export default {
   min-width: 310px;
   padding: 16px 20px 26px 24px;
 
-  &:hover {
-    & .sale-options {
+  &.active {
+    & .sale-product__bottom .sale-options {
       display: flex;
     }
   }

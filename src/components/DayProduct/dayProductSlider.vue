@@ -238,20 +238,12 @@ export default {
       right: 0;
     }
   }
-
-  &__navigation-btn {
-  }
-}
-.swiper-button-prev {
 }
 
-.swiper-button-next {
-}
 .dp-slider-slider {
   width: 100%;
   &__item {
     display: flex;
-    flex: 1 0 calc(100% / 2);
     height: 100%;
   }
 }
