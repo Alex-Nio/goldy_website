@@ -20,7 +20,7 @@
         :grabCursor="sliderOptions.grabCursor"
         :spaceBetween="sliderOptions.spaceBetweenSlides"
         :loop="sliderOptions.loop"
-        :autoplay="sliderOptions.autoplay.autoplay"
+        :autoplay="sliderOptions.autoplay"
         :freemode="sliderOptions.freeMode"
         :slidesPerView="sliderOptions.slidesPerView"
         :navigation="sliderOptions.navigation"
@@ -133,7 +133,11 @@
                 </div>
                 <div class="dp-actions__btns">
                   <div class="dp-actions-field">
-                    <button class="field-btn">
+                    <button
+                      @click="this.saveActive = !this.saveActive"
+                      class="field-btn"
+                      :class="{ active: saveActive }"
+                    >
                       <img
                         src="@/assets/img/icons/add-to-fav-icon.svg"
                         alt="icon"
@@ -159,7 +163,7 @@
 </template>
 
 <script>
-import { Navigation } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -170,6 +174,7 @@ export default {
   props: ["dpData"],
   data() {
     return {
+      saveActive: false,
       sliderOptions: {
         slidesPerView: 1,
         spaceBetweenSlides: 0,
@@ -179,8 +184,9 @@ export default {
         lazy: false,
         freeMode: true,
         autoplay: {
-          speed: 350,
-          autoplay: false,
+          speed: 550,
+          autoplay: true,
+          delay: 5000,
         },
         Navigation: {
           nextEl: this.$refs.NextBtn,
@@ -206,7 +212,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
     };
   },
 };
@@ -256,6 +262,7 @@ export default {
     width: 100%;
     max-width: 640px;
     padding: 0 5px;
+    cursor: default;
   }
 }
 .dp-rating {

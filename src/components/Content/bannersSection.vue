@@ -52,6 +52,7 @@ export default {
 @import "@/assets/scss/imports.scss";
 .goldy-banners {
   width: 100%;
+
   &__inner {
     width: 100%;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="sale-tab" @click="toggleSelects($event)">
+  <div class="sale-tab">
     <div class="sale-tab__content">
       <div class="sale-tab__navigation">
         <button
@@ -14,6 +14,7 @@
         ></button>
       </div>
       <swiper
+        @mouseleave="toggleSelects($event)"
         :modules="modules"
         @swiper="swiper = $event"
         :speed="sliderOptions.autoplay.speed"
@@ -34,7 +35,7 @@
           :key="i"
           class="sale-tab-slider__item"
         >
-          <div class="sale-product" @click="toggleSelects($event)">
+          <div class="sale-product" @mouseenter="toggleSelects($event)">
             <div v-if="item.badges" class="badges">
               <span
                 v-for="badge in item.badges"

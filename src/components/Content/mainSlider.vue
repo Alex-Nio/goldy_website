@@ -78,7 +78,7 @@
 </template>
 <script>
 // import Swiper core and required modules
-import { Navigation, Pagination, A11y } from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper";
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -99,8 +99,9 @@ export default {
         lazy: true,
         freeMode: true,
         autoplay: {
-          speed: 350,
+          speed: 550,
           autoplay: true,
+          delay: 3000,
         },
         loop: true,
         Navigation: {
@@ -125,7 +126,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Navigation, Pagination, A11y],
+      modules: [Navigation, Pagination, Autoplay],
     };
   },
 };
