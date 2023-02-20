@@ -134,7 +134,8 @@ textarea {
 
 
 .g-btn {
-    padding: 20px 56px;
+    width: 100%;
+    padding: 19px 56px;
     text-transform: uppercase;
     text-align: center;
     min-width: 200px;
@@ -145,6 +146,7 @@ textarea {
 .g-btn-dark {
     @include fs($ff_I, 14px, $white, 500);
     background-color: $primary;
+    border: 1px solid transparent;
 
     &:hover {
         background-color: $btn-hover;
@@ -159,9 +161,12 @@ textarea {
 .g-btn-light {
     @include fs($ff_I, 14px, $primary, 500);
     background-color: $white;
+    border: 1px solid $primary;
 
     &:hover {
         background-color: $primary;
+        border: 1px solid transparent;
+        color: $white;
         @include tr;
     }
 
