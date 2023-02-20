@@ -188,6 +188,8 @@ export default {
   }
 }
 .sale-tab-slider {
+  display: flex;
+  justify-content: center;
   width: 100%;
 
   &__item {
@@ -201,11 +203,6 @@ export default {
     //! Overflow hidden fix for selects
     margin-bottom: 300px;
   }
-}
-
-.swiper-wrapper {
-  display: flex;
-  justify-content: center;
 }
 
 .sale-product {
