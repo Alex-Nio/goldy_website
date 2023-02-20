@@ -5,7 +5,6 @@
         <div class="sale-out__inner">
           <h2 class="section-title sale-out-title">Распродажа</h2>
           <div class="sale-out__content">
-            <!-- <sale-out-tabs-navigation class="sale-out__nav"></sale-out-tabs-navigation> -->
             <sale-out-tabs
               @setActiveIndex="setActiveIndex"
               :tabs="tabs"
@@ -49,6 +48,11 @@ export default {
               discount: "65 000 ₽",
               label: "-45%",
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,
@@ -56,6 +60,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,
@@ -63,6 +72,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,
@@ -70,6 +84,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: [
@@ -81,6 +100,11 @@ export default {
               discount: "65 000 ₽",
               label: "-45%",
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,
@@ -88,6 +112,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: [{ type: "new", name: "new" }],
@@ -95,6 +124,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: [{ type: "hit", name: "хит" }],
@@ -102,6 +136,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильное кольцо из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
           ],
         },
@@ -114,6 +153,11 @@ export default {
               discount: "65 000 ₽",
               label: "-45%",
               description: "Стильная серьга из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,
@@ -121,6 +165,11 @@ export default {
               discount: null,
               label: null,
               description: "Стильная серьга из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,
@@ -145,6 +194,11 @@ export default {
               discount: "65 000 ₽",
               label: "-45%",
               description: "Стильная серьга из белого золота c бриллиантами",
+              previewImages: [
+                { 0: "assets/img/sale/sale-product1.png" },
+                { 1: "assets/img/sale/sale-product2.png" },
+                { 2: "assets/img/sale/sale-product3.png" },
+              ],
             },
             {
               badges: null,

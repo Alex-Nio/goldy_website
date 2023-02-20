@@ -29,7 +29,6 @@
         :breakpoints="sliderOptions.breakpoints"
         class="sale-tab-slider"
       >
-        <!-- Slide -->
         <swiper-slide
           v-for="(item, i) in tabsData.items"
           :key="i"
@@ -59,7 +58,7 @@
             </div>
 
             <div class="sale-product__top" @click.prevent.stop>
-              <sale-product-preview></sale-product-preview>
+              <sale-product-preview :previewImages="item.previewImages"></sale-product-preview>
             </div>
 
             <div class="sale-product__bottom">
@@ -89,16 +88,12 @@
 </template>
 
 <script>
-// import Swiper core and required modules
 import { Navigation } from "swiper";
-
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
+
 import SaleProductPreview from "@/components/SaleOut/SaleProduct/saleProductPreview";
 import materialSelect from "@/components/UI/materialSelect";
 import sizeSelect from "@/components/UI/sizeSelect";

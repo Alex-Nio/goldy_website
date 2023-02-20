@@ -1,13 +1,12 @@
 <template>
-  <div class="sale-product-variants">
-    <div @mouseenter="setActiveBullet($event)" class="sale-product-variants__variant">
-      <img src="@/assets/img/sale/sale-product1.png" alt="sale-product" />
-    </div>
-    <div @mouseenter="setActiveBullet($event)" class="sale-product-variants__variant">
-      <img src="@/assets/img/sale/sale-product2.png" alt="sale-product" />
-    </div>
-    <div @mouseenter="setActiveBullet($event)" class="sale-product-variants__variant">
-      <img src="@/assets/img/sale/sale-product3.png" alt="sale-product" />
+  <div v-if="previewImages" class="sale-product-variants">
+    <div
+      v-for="(item, i) in previewImages"
+      :key="i"
+      @mouseenter="setActiveBullet($event)"
+      class="sale-product-variants__variant"
+    >
+      <img :src="require(`@/${item[i]}`)" alt="sale-product" />
     </div>
     <!-- pagination -->
     <div class="variants-pagination">
@@ -16,10 +15,14 @@
       <div class="variants-pagination__bullet"></div>
     </div>
   </div>
+  <div v-else>
+    <p>Пожалуйста, добавьте картинки</p>
+  </div>
 </template>
 
 <script>
 export default {
+  props: ["previewImages"],
   methods: {
     setActiveBullet(event) {
       const variants = event.target.parentNode.children;
