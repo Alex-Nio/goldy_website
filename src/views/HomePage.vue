@@ -2,7 +2,7 @@
   <main-slider></main-slider>
   <popular-products></popular-products>
   <sale-out></sale-out>
-  <div style="height: 100vh" class="devider"></div>
+  <!-- <div style="height: 100vh" class="devider"></div> -->
 </template>
 
 <script>

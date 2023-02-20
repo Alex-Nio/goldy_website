@@ -1,6 +1,7 @@
 <template>
-  <div class="sale-out-tabs">
-    <ul class="sale-out-tabs__list">
+  <div class="sale-out-tabs" @click="showCategories">
+    <div class="mobile-tabs-trigger">Категории</div>
+    <ul ref="categories" class="sale-out-tabs__list">
       <li
         v-for="(tab, i) in tabs"
         :key="tab"
@@ -20,6 +21,10 @@ export default {
   methods: {
     setActiveIndex(index) {
       this.$emit("setActiveIndex", index);
+    },
+
+    showCategories() {
+      this.$refs.categories.classList.toggle("active");
     },
   },
 };
@@ -63,6 +68,42 @@ export default {
       color: $white;
       background-color: $tab-active;
       @include tr-default;
+    }
+  }
+}
+
+.mobile-tabs-trigger {
+  display: none;
+  font-family: "Prata";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 678px) {
+  .sale-out-tabs__list {
+    @include fdcjs_ais;
+    display: none;
+    & > li {
+      margin: 10px 0;
+    }
+    &.active {
+      display: flex;
+      margin: 0 0 20px 0;
+      animation: slideInLeft 0.3s linear, fadeIn 0.3s linear;
+    }
+  }
+
+  .mobile-tabs-trigger {
+    display: flex;
+    margin: 50px 0;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &:hover {
+      color: $secondary;
     }
   }
 }

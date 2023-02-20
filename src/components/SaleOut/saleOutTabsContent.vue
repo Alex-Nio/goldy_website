@@ -178,7 +178,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/imports.scss";
 .sale-tab {
   width: 100%;
@@ -188,11 +188,11 @@ export default {
   }
 }
 .sale-tab-slider {
-  display: flex;
-  justify-content: center;
   width: 100%;
 
   &__item {
+    display: flex;
+    justify-content: center;
     position: relative;
     width: 100%;
     height: 100%;

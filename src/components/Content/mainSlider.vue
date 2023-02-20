@@ -199,6 +199,16 @@ export default {
   }
 }
 
+.navigation {
+  &__prev {
+    left: 24px;
+  }
+
+  &__next {
+    right: 24px;
+  }
+}
+
 @media screen and (max-width: 920px) {
   .goldy-slide__inner {
     flex-direction: column-reverse;

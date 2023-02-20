@@ -9,8 +9,6 @@
               @setActiveIndex="setActiveIndex"
               :tabs="tabs"
               :activeTab="activeTab"
-              @prev="prev"
-              @next="next"
             />
             <sale-out-tabs-content
               v-for="(tab, index) in tabs"
@@ -30,7 +28,6 @@
 <script>
 import saleOutTabs from "@/components/SaleOut/saleOutTabs.vue";
 import saleOutTabsContent from "@/components/SaleOut/saleOutTabsContent.vue";
-import saleOutTabsNavigation from "@/components/SaleOut/saleOutTabsNavigation.vue";
 export default {
   data() {
     return {
@@ -366,7 +363,6 @@ export default {
   components: {
     saleOutTabs,
     saleOutTabsContent,
-    saleOutTabsNavigation,
   },
 };
 </script>
