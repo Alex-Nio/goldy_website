@@ -32,50 +32,40 @@
         <!-- Big Slide -->
         <swiper-slide v-for="(item, i) in dpData" :key="i" class="dp-slider-slider__item">
           <!-- Small slide -->
-          <preview-slider :previewImages="item.previewImages"></preview-slider>
+          <preview-slider
+            :previewImages="item.previewImages"
+            :badges="item.badges"
+          ></preview-slider>
           <form class="dp-details">
             <div class="dp-details__inner">
               <!-- rating -->
               <div class="dp-rating">
                 <!-- stars -->
                 <div class="dp-rating__rates">
-                  <span class="rate-item rate-item--default"></span>
-                  <span class="rate-item rate-item--default"></span>
-                  <span class="rate-item rate-item--default"></span>
-                  <span class="rate-item rate-item--default"></span>
+                  <span class="rate-item rate-item--filled"></span>
+                  <span class="rate-item rate-item--filled"></span>
+                  <span class="rate-item rate-item--filled"></span>
+                  <span class="rate-item rate-item--filled"></span>
                   <span class="rate-item rate-item--default"></span>
                 </div>
-                <span class="current-rate">4,2</span>
+                <span class="current-rate">{{ item.currentRate }}</span>
               </div>
               <div class="dp-name">
-                <h3>Name</h3>
+                <p>{{ item.description }}</p>
               </div>
               <div class="dp-vendor-code">
-                <span>Артикул:</span>
+                <span>Артикул: {{ item.vendor }}</span>
               </div>
               <!-- Timer row -->
               <div class="dp-details__row">
                 <!-- prices -->
                 <div class="dp-prices dp-details__prices">
-                  <div class="dp-prices__current">22 000 ₽</div>
-                  <div class="dp-prices__discount">22 000 ₽</div>
-                  <div class="dp-prices__label">-45%</div>
+                  <div class="dp-prices__current">{{ item.currentPrice }}</div>
+                  <div class="dp-prices__discount">{{ item.discount }}</div>
+                  <div class="dp-prices__label">{{ item.label }}</div>
                 </div>
                 <!-- timer -->
-                <div class="dp-timer">
-                  <div class="dp-timer__hours">
-                    <div class="hours-counter">12</div>
-                    <div class="hours-text">часов</div>
-                  </div>
-                  <div class="dp-timer__minutes">
-                    <div class="minutes-counter">12</div>
-                    <div class="minutes-text">минут</div>
-                  </div>
-                  <div class="dp-timer__seconds">
-                    <div class="seconds-counter">12</div>
-                    <div class="seconds-text">секунд</div>
-                  </div>
-                </div>
+                <deadline-timer :deadline="item.deadline"></deadline-timer>
               </div>
               <!-- Colors -->
               <div class="dp-colors">
@@ -113,29 +103,19 @@
                 <!-- bottom-row -->
                 <div class="dp-sizes__bottom">
                   <div class="dp-sizes__blocks">
-                    <label class="size-checkbox">
-                      <input type="checkbox" />
-                      <span class="checkmark">19.5</span>
-                    </label>
-                    <label class="size-checkbox">
-                      <input type="checkbox" />
-                      <span class="checkmark">19.5</span>
-                    </label>
-                    <label class="size-checkbox">
-                      <input type="checkbox" />
-                      <span class="checkmark">19.5</span>
-                    </label>
-                    <label class="size-checkbox">
-                      <input type="checkbox" />
-                      <span class="checkmark">19.5</span>
-                    </label>
-                    <label class="size-checkbox">
-                      <input type="checkbox" disabled />
-                      <span class="checkmark">19.5</span>
-                    </label>
-                    <label class="size-checkbox">
-                      <input type="checkbox" disabled />
-                      <span class="checkmark">19.5</span>
+                    <label
+                      v-for="(size, sizeKey) in item.sizes"
+                      :key="sizeKey"
+                      class="size-checkbox"
+                    >
+                      <div v-if="size['active']">
+                        <input type="checkbox" />
+                        <span class="checkmark">{{ size["active"] }}</span>
+                      </div>
+                      <div v-else>
+                        <input type="checkbox" disabled />
+                        <span class="checkmark">{{ size["outOfOrder"] }}</span>
+                      </div>
                     </label>
                   </div>
                 </div>
@@ -185,6 +165,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
 import previewSlider from "@/components/DayProduct/previewSlider";
+import deadlineTimer from "@/components/UI/dedlineTimer";
 export default {
   props: ["dpData"],
   data() {
@@ -221,6 +202,7 @@ export default {
     Swiper,
     SwiperSlide,
     previewSlider,
+    deadlineTimer,
   },
   setup() {
     return {
@@ -267,19 +249,21 @@ export default {
 }
 .dp-slider-slider {
   width: 100%;
-  height: 550px;
   &__item {
     display: flex;
     flex: 1 0 calc(100% / 2);
+    height: 100%;
   }
 }
 
 .dp-details {
   width: 100%;
+  margin-left: auto;
   &__inner {
     @include fdcjs_ais;
     width: 100%;
-    max-width: 650px;
+    max-width: 640px;
+    padding: 0 5px;
   }
 }
 .dp-rating {
@@ -368,69 +352,6 @@ export default {
     min-width: fit-content;
     cursor: default;
   }
-}
-.dp-timer {
-  position: relative;
-  @include fdrjs_aic;
-  padding: 12px 14px;
-  background-color: #f5f5f5;
-  margin: 0 auto;
-  &__hours,
-  &__minutes,
-  &__seconds {
-    @include fdcjc_aic;
-    border: 1px solid #d0d0d0;
-    margin: 0 10px;
-    padding: 6px 10px 5px 10px;
-    width: 100%;
-    height: 40px;
-    min-width: 52px;
-    max-width: 52px;
-  }
-
-  &::before,
-  &::after {
-    content: ":";
-    position: absolute;
-    color: $black;
-    font-size: 16px;
-    font-weight: bold;
-    top: 48%;
-    transform: translateY(-50%);
-    animation: fadeIn s ease-in-out infinite;
-  }
-
-  &::before {
-    left: 74px;
-  }
-  &::after {
-    right: 74px;
-  }
-
-  & div:first-child {
-    margin-left: 0;
-  }
-
-  & div:last-child {
-    margin-right: 0;
-  }
-}
-
-.hours-counter,
-.minutes-counter,
-.seconds-counter {
-  @include fs($ff_I, 16px, $primary, 700);
-  margin-bottom: 2px;
-}
-.hours-text,
-.minutes-text,
-.seconds-text {
-  @include fs($ff_I, 11px, $primary, 300);
-  text-transform: lowercase;
-}
-
-.seconds-counter {
-  animation: fadeOut 1s ease-in-out infinite;
 }
 
 .dp-colors {
@@ -667,12 +588,12 @@ export default {
 
 .dp-actions {
   @include fdrjs_ais;
+  flex-wrap: wrap;
   width: 100%;
   &__btns {
     @include fdcjs_ais;
-    width: 100%;
 
-    & > button:first-child {
+    & > button {
       margin-bottom: 10px;
     }
 
@@ -712,10 +633,16 @@ export default {
       filter: brightness(0) saturate(100%) invert(32%) sepia(58%) saturate(3871%)
         hue-rotate(349deg) brightness(99%) contrast(78%);
     }
-
-    // color: $primary;
   }
 }
+
+.cart-btn,
+.oneclick-buy-btn {
+  width: 100%;
+  min-width: 400px;
+  max-width: 400px;
+}
+
 .save-btn {
 }
 .compare-btn {
