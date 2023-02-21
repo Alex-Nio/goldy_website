@@ -187,6 +187,7 @@ export default {
           speed: 550,
           autoplay: true,
           delay: 5000,
+          pauseOnMouseEnter: true,
         },
         Navigation: {
           nextEl: this.$refs.NextBtn,

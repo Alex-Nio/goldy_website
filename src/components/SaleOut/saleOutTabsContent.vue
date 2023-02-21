@@ -14,21 +14,20 @@
         ></button>
       </div>
       <swiper
-        @mouseleave="toggleSelects($event)"
         :modules="modules"
         @swiper="swiper = $event"
-        :speed="sliderOptions.autoplay.speed"
         :grabCursor="sliderOptions.grabCursor"
         :spaceBetween="sliderOptions.spaceBetweenSlides"
         :loop="sliderOptions.loop"
-        :autoplay="sliderOptions.autoplay.autoplay"
-        :freemode="sliderOptions.freeMode"
+        :autoplay="sliderOptions.autoplay"
         :slidesPerView="sliderOptions.slidesPerView"
         :navigation="sliderOptions.navigation"
         :preloadImages="sliderOptions.preloadImages"
         :lazy="sliderOptions.lazy"
         :breakpoints="sliderOptions.breakpoints"
         class="sale-tab-slider"
+        @mouseleave="toggleSelects($event), swiper.autoplay.start()"
+        @mouseenter="swiper.autoplay.stop()"
       >
         <swiper-slide
           v-for="(item, i) in tabsData.items"
@@ -91,7 +90,7 @@
 </template>
 
 <script>
-import { Navigation } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -109,13 +108,14 @@ export default {
       sliderOptions: {
         slidesPerView: 4,
         spaceBetweenSlides: 20,
-        preloadImages: false,
+        preloadImages: true,
         grabCursor: true,
         loop: true,
-        lazy: false,
-        freeMode: true,
+        lazy: true,
+        freeMode: false,
         autoplay: {
-          speed: 350,
+          speed: 550,
+          delay: 3000,
           autoplay: true,
         },
         Navigation: {
@@ -135,7 +135,7 @@ export default {
           1280: {
             slidesPerView: 4,
           },
-          2156: {
+          3156: {
             slidesPerView: 5,
           },
         },
@@ -192,7 +192,7 @@ export default {
   },
   setup() {
     return {
-      modules: [Navigation],
+      modules: [Navigation, Autoplay],
     };
   },
 };

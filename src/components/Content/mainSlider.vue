@@ -77,19 +77,12 @@
   </section>
 </template>
 <script>
-// import Swiper core and required modules
 import { Navigation, Pagination, Autoplay } from "swiper";
-
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-
-// Import Swiper styles
 export default {
   data() {
     return {

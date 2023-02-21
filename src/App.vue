@@ -21,6 +21,8 @@ export default {
       menuActive: false,
       burgerOpen: false,
       headerScrolling: false,
+      lastPosition: null,
+      limitPosition: 0,
     };
   },
   components: {
@@ -40,7 +42,7 @@ export default {
     handleScroll() {
       if (this.lastPosition > window.scrollY && this.limitPosition < window.scrollY) {
         this.headerScrolling = true;
-      } else if (this.limitPosition > 0) {
+      } else if (this.limitPosition > 130) {
         this.headerScrolling = false;
       }
 
