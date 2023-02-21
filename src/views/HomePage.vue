@@ -1,9 +1,12 @@
 <template>
-  <main-slider></main-slider>
-  <popular-products></popular-products>
-  <sale-out></sale-out>
-  <banners-section></banners-section>
-  <day-product></day-product>
+  <main>
+    <main-slider></main-slider>
+    <popular-products></popular-products>
+    <sale-out></sale-out>
+    <banners-section></banners-section>
+    <day-product></day-product>
+    <articles-section></articles-section>
+  </main>
   <div style="height: 100vh" class="devider"></div>
 </template>
 
@@ -13,6 +16,7 @@ import popularProducts from "@/components/Content/popularProducts";
 import saleOut from "@/components/Content/saleOut";
 import bannersSection from "@/components/Content/bannersSection";
 import dayProduct from "@/components/Content/dayProduct";
+import articlesSection from "@/components/Content/articlesSection";
 export default {
   components: {
     mainSlider,
@@ -20,6 +24,7 @@ export default {
     saleOut,
     bannersSection,
     dayProduct,
+    articlesSection,
   },
 };
 </script>
