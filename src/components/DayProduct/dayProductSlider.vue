@@ -21,7 +21,7 @@
         :grabCursor="sliderOptions.grabCursor"
         :spaceBetween="sliderOptions.spaceBetweenSlides"
         :loop="sliderOptions.loop"
-        :autoplay="sliderOptions.autoplay"
+        :autoplay="false"
         :freemode="sliderOptions.freeMode"
         :slidesPerView="sliderOptions.slidesPerView"
         :navigation="sliderOptions.navigation"
