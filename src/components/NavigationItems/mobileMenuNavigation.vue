@@ -25,7 +25,7 @@ export default {
 .m-menu-navigation {
   @include fdcjc_aic;
   width: 100%;
-  height: 80.4vh;
+  height: 100vh;
   background-color: $white;
   position: fixed;
   margin-top: 32px;
@@ -39,11 +39,16 @@ export default {
 
   &__list {
     display: grid;
-    grid-template-rows: repeat(1, 1fr); /* 2 строки */
-    grid-template-columns: repeat(1, 1fr); /* 7 колонок */
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 5px;
     padding: 10px 0;
     margin-top: -20px;
+    position: absolute;
+    width: 100%;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   &__list-item {
@@ -55,7 +60,7 @@ export default {
 
 @media screen and (max-width: 620px) {
   .m-menu-navigation {
-    height: 71.4vh;
+    height: 100vh;
     margin-top: 0;
   }
 }

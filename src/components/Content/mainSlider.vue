@@ -4,6 +4,7 @@
       <swiper
         :modules="modules"
         @swiper="swiper = $event"
+        @slideChange="onSlideChange"
         :loop="sliderOptions.loop"
         :speed="sliderOptions.autoplay.speed"
         :autoplay="sliderOptions.autoplay.autoplay"
@@ -11,51 +12,82 @@
         :slidesPerView="sliderOptions.slidesPerView"
         :navigation="sliderOptions.navigation"
         :preloadImages="sliderOptions.preloadImages"
+        :parallax="true"
         :lazy="sliderOptions.lazy"
         pagination
         class="goldy-main-slider"
       >
         <!-- Slide -->
-        <swiper-slide class="goldy-main-slider__slide">
+        <swiper-slide class="goldy-main-slider__slide" data-swiper-parallax="-50%">
           <div class="goldy-slide">
             <div class="goldy-slide__inner">
               <div class="goldy-slide__discount">
-                <span class="goldy-slide__discount--small">Суперскидка до 60%</span>
-                <span class="goldy-slide__discount--large">НА БРИЛЛИАНТЫ</span>
-                <button class="g-btn g-btn-dark g-btn--small">Подробнее</button>
+                <span class="goldy-slide__discount--small" data-swiper-parallax="-300"
+                  >Суперскидка до 60%</span
+                >
+                <span class="goldy-slide__discount--large" data-swiper-parallax="-700"
+                  >НА БРИЛЛИАНТЫ</span
+                >
+                <button class="g-btn g-btn-dark g-btn--small" data-swiper-parallax="-100">
+                  Подробнее
+                </button>
               </div>
-              <div class="goldy-slide__image">
-                <img src="@/assets/img/slider/slide1.png" alt="Slide image" />
+              <div class="goldy-slide__image" data-swiper-parallax="-400">
+                <img
+                  src="@/assets/img/slider/slide1.png"
+                  alt="Slide image"
+                  data-swiper-parallax="-30%"
+                />
               </div>
             </div>
           </div>
         </swiper-slide>
         <!-- Slide -->
-        <swiper-slide class="goldy-main-slider__slide">
+        <swiper-slide class="goldy-main-slider__slide" data-swiper-parallax="-50%">
           <div class="goldy-slide">
             <div class="goldy-slide__inner">
               <div class="goldy-slide__discount">
-                <span class="goldy-slide__discount--small">Суперскидка до 60%</span>
-                <span class="goldy-slide__discount--large">НА БРИЛЛИАНТЫ</span>
-                <button class="g-btn g-btn-dark g-btn--small">Подробнее</button>
+                <span class="goldy-slide__discount--small" data-swiper-parallax="-300"
+                  >Суперскидка до 60%</span
+                >
+                <span class="goldy-slide__discount--large" data-swiper-parallax="-700"
+                  >НА БРИЛЛИАНТЫ</span
+                >
+                <button class="g-btn g-btn-dark g-btn--small" data-swiper-parallax="-100">
+                  Подробнее
+                </button>
               </div>
-              <div class="goldy-slide__image">
-                <img src="@/assets/img/slider/slide1.png" alt="Slide image" />
+              <div class="goldy-slide__image" data-swiper-parallax="-400">
+                <img
+                  src="@/assets/img/slider/slide1.png"
+                  alt="Slide image"
+                  data-swiper-parallax="-30%"
+                />
               </div>
             </div>
           </div>
         </swiper-slide>
         <!-- Slide -->
-        <swiper-slide class="goldy-main-slider__slide">
+        <swiper-slide class="goldy-main-slider__slide" data-swiper-parallax="-50%">
           <div class="goldy-slide">
             <div class="goldy-slide__inner">
               <div class="goldy-slide__discount">
-                <span class="goldy-slide__discount--small">Суперскидка до 60%</span>
-                <span class="goldy-slide__discount--large">НА БРИЛЛИАНТЫ</span>
-                <button class="g-btn g-btn-dark g-btn--small">Подробнее</button>
+                <span class="goldy-slide__discount--small" data-swiper-parallax="-300"
+                  >Суперскидка до 60%</span
+                >
+                <span class="goldy-slide__discount--large" data-swiper-parallax="-700"
+                  >НА БРИЛЛИАНТЫ</span
+                >
+                <button class="g-btn g-btn-dark g-btn--small" data-swiper-parallax="-100">
+                  Подробнее
+                </button>
               </div>
-              <div class="goldy-slide__image">
-                <img src="@/assets/img/slider/slide1.png" alt="Slide image" />
+              <div class="goldy-slide__image" data-swiper-parallax="-400">
+                <img
+                  src="@/assets/img/slider/slide1.png"
+                  alt="Slide image"
+                  data-swiper-parallax="-30%"
+                />
               </div>
             </div>
           </div>
@@ -77,7 +109,7 @@
   </section>
 </template>
 <script>
-import { Navigation, Pagination, Autoplay } from "swiper";
+import { Parallax, Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -86,17 +118,36 @@ import "swiper/css/scrollbar";
 export default {
   data() {
     return {
+      onSwiper: (swiper) => {
+        if (swiper.activeIndex == 0) {
+          this.$refs.PrevBtn.classList.add("fade");
+        }
+      },
+      onSlideChange: (swiper) => {
+        if (swiper.activeIndex == 0) {
+          this.$refs.PrevBtn.classList.add("fade");
+        }
+
+        if (swiper.activeIndex > 0 && swiper.activeIndex < swiper.slides.length - 1) {
+          this.$refs.PrevBtn.classList.remove("fade");
+          this.$refs.NextBtn.classList.remove("fade");
+        }
+
+        if (swiper.activeIndex == swiper.slides.length - 1) {
+          this.$refs.NextBtn.classList.add("fade");
+        }
+      },
       sliderOptions: {
         slidesPerView: 1,
         preloadImages: false,
         lazy: true,
-        freeMode: true,
+        freeMode: false,
         autoplay: {
-          speed: 550,
+          speed: 850,
           autoplay: true,
           delay: 3000,
         },
-        loop: true,
+        loop: false,
         Navigation: {
           nextEl: this.$refs.NextBtn,
           prevEl: this.$refs.PrevBtn,
@@ -119,8 +170,11 @@ export default {
   },
   setup() {
     return {
-      modules: [Navigation, Pagination, Autoplay],
+      modules: [Parallax, Navigation, Pagination, Autoplay],
     };
+  },
+  mounted() {
+    this.onSwiper(this.swiper);
   },
 };
 </script>
@@ -194,6 +248,13 @@ export default {
 }
 
 .navigation {
+  &__prev,
+  &__next {
+    &.fade {
+      opacity: 0.2;
+    }
+  }
+
   &__prev {
     left: 24px;
   }

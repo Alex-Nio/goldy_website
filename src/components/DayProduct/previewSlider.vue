@@ -4,8 +4,8 @@
       <swiper
         :modules="modules"
         @swiper="swiper = $event"
+        @slideChange="onSlideChange"
         :speed="sliderOptions.autoplay.speed"
-        :grabCursor="sliderOptions.grabCursor"
         :spaceBetween="sliderOptions.spaceBetweenSlides"
         :loop="sliderOptions.loop"
         :autoplay="sliderOptions.autoplay.autoplay"
@@ -59,14 +59,32 @@ export default {
   props: ["previewImages", "badges"],
   data() {
     return {
+      onSwiper: (swiper) => {
+        if (swiper.activeIndex == 0) {
+          this.$refs.PrevBtn.classList.add("fade");
+        }
+      },
+      onSlideChange: (swiper) => {
+        if (swiper.activeIndex == 0) {
+          this.$refs.PrevBtn.classList.add("fade");
+        }
+
+        if (swiper.activeIndex > 0 && swiper.activeIndex < swiper.slides.length - 1) {
+          this.$refs.PrevBtn.classList.remove("fade");
+          this.$refs.NextBtn.classList.remove("fade");
+        }
+
+        if (swiper.activeIndex == swiper.slides.length - 1) {
+          this.$refs.NextBtn.classList.add("fade");
+        }
+      },
       sliderOptions: {
         slidesPerView: 1,
         spaceBetweenSlides: 0,
         preloadImages: false,
-        grabCursor: true,
         loop: false,
         lazy: false,
-        freeMode: true,
+        freeMode: false,
         autoplay: {
           speed: 350,
           autoplay: false,
@@ -86,6 +104,9 @@ export default {
     prev() {
       this.swiper.slidePrev();
     },
+  },
+  mounted() {
+    this.onSwiper(this.swiper);
   },
   components: {
     Swiper,
@@ -163,6 +184,14 @@ export default {
   &__next {
     background-color: transparent;
     border: none;
+
+    &.fade {
+      opacity: 0.2;
+
+      &:active {
+        pointer-events: none;
+      }
+    }
 
     &:hover {
       background-color: transparent;

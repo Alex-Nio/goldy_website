@@ -44,7 +44,9 @@ export default {
           Number(deadlineParts[1]) - 1, // Месяц (нумерация месяцев начинается с 0)
           Number(deadlineParts[0]) // День
         );
-        let now = new Date(Date.now() + new Date().getTimezoneOffset() * 60000); // текущее время в UTC
+        // let now = new Date(Date.now() + new Date().getTimezoneOffset() * 60000); // текущее время в UTC
+        // let timeDiff = deadline.getTime() - now.getTime();
+        let now = new Date(); // текущее время пользователя
         let timeDiff = deadline.getTime() - now.getTime();
 
         if (timeDiff <= 0) {
@@ -74,8 +76,10 @@ export default {
       Number(deadlineParts[1]) - 1, // Месяц (нумерация месяцев начинается с 0)
       Number(deadlineParts[0]) // День
     );
-    const now = new Date(Date.now() + new Date().getTimezoneOffset() * 60000); // текущее время в UTC
-    const timeDiff = deadline.getTime() - now.getTime();
+    // const now = new Date(Date.now() + new Date().getTimezoneOffset() * 60000); // текущее время в UTC
+    // const timeDiff = deadline.getTime() - now.getTime();
+    let now = new Date(); // текущее время пользователя
+    let timeDiff = deadline.getTime() - now.getTime();
 
     const seconds = Math.floor((timeDiff / 1000) % 60);
     const minutes = Math.floor((timeDiff / 1000 / 60) % 60);

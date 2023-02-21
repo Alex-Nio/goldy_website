@@ -6,7 +6,7 @@
         :key="item"
         class="cart-actions__list-item"
       >
-        <a :class="cartActionsItems[i]['dafaultClass']" href="#">
+        <a @click.prevent :class="cartActionsItems[i]['dafaultClass']" href="#">
           <img
             :src="require(`@/${cartActionsItems[i]['iconSrc']}`)"
             :alt="cartActionsItems[i]['altTag']"
@@ -51,12 +51,49 @@ export default {
   }
 
   &__list-item {
+    position: relative;
+
     &:nth-child(1) {
       margin-right: 2px;
     }
 
     &:nth-child(2) {
       margin: 0 28px;
+    }
+
+    & .cart-item,
+    & .chart-item {
+      &::before {
+        @include tr;
+      }
+    }
+
+    &:hover {
+      & a {
+        opacity: 1;
+      }
+
+      & .cart-item,
+      & .chart-item {
+        &::before {
+          content: "";
+          width: 32px;
+          height: 32px;
+          background-color: #f8f8f8;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          @include tr;
+          z-index: -1;
+        }
+
+        &:active {
+          &::before {
+            background-color: #e8e7e7;
+          }
+        }
+      }
     }
   }
 }

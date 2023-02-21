@@ -101,12 +101,12 @@ export default {
           faivoritesCounter: 23,
         },
         {
-          dafaultClass: "favorites-item",
+          dafaultClass: "favorites-item chart-item",
           iconSrc: "assets/img/icons/chart-icon.svg",
           altTag: "chart",
         },
         {
-          dafaultClass: "favorites-item",
+          dafaultClass: "favorites-item cart-item",
           iconSrc: "assets/img/icons/bag-icon.svg",
           altTag: "cart",
         },
@@ -196,7 +196,6 @@ export default {
   }
 }
 
-// Header Bottom
 .content-bottom {
   width: 100%;
 }
@@ -211,7 +210,6 @@ export default {
     @include fdrjs_aic;
     width: 100%;
     max-width: 850px;
-    // padding: 0 25px;
   }
 
   &__list-item {

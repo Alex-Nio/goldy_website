@@ -16,6 +16,7 @@
       <swiper
         :modules="modules"
         @swiper="swiper = $event"
+        @slideChange="onSlideChange"
         :speed="sliderOptions.autoplay.speed"
         :grabCursor="sliderOptions.grabCursor"
         :spaceBetween="sliderOptions.spaceBetweenSlides"
@@ -103,11 +104,7 @@
                 <!-- bottom-row -->
                 <div class="dp-sizes__bottom">
                   <div class="dp-sizes__blocks">
-                    <label
-                      v-for="(size, sizeKey) in item.sizes"
-                      :key="sizeKey"
-                      class="size-checkbox"
-                    >
+                    <label v-for="(size, i) in item.sizes" :key="i" class="size-checkbox">
                       <div v-if="size['active']">
                         <input type="checkbox" />
                         <span class="checkmark">{{ size["active"] }}</span>
@@ -133,11 +130,7 @@
                 </div>
                 <div class="dp-actions__btns">
                   <div class="dp-actions-field">
-                    <button
-                      @click="this.saveActive = !this.saveActive"
-                      class="field-btn"
-                      :class="{ active: saveActive }"
-                    >
+                    <button @click.prevent="setActive($event)" class="field-btn">
                       <img
                         src="@/assets/img/icons/add-to-fav-icon.svg"
                         alt="icon"
@@ -146,11 +139,11 @@
                   </div>
                   <div class="dp-actions-field">
                     <img src="@/assets/img/icons/compare-icon.svg" alt="icon" />
-                    <button class="field-btn compare-btn">Сравнить</button>
+                    <button @click.prevent class="field-btn compare-btn">Сравнить</button>
                   </div>
                   <div class="dp-actions-field">
                     <img src="@/assets/img/icons/share-icon.svg" alt="icon" />
-                    <button class="field-btn share-btn">Поделиться</button>
+                    <button @click.prevent class="field-btn share-btn">Поделиться</button>
                   </div>
                 </div>
               </div>
@@ -174,7 +167,25 @@ export default {
   props: ["dpData"],
   data() {
     return {
-      saveActive: false,
+      onSwiper: (swiper) => {
+        if (swiper.activeIndex == 0) {
+          this.$refs.PrevBtn.classList.add("fade");
+        }
+      },
+      onSlideChange: (swiper) => {
+        if (swiper.activeIndex == 0) {
+          this.$refs.PrevBtn.classList.add("fade");
+        }
+
+        if (swiper.activeIndex > 0 && swiper.activeIndex < swiper.slides.length - 1) {
+          this.$refs.PrevBtn.classList.remove("fade");
+          this.$refs.NextBtn.classList.remove("fade");
+        }
+
+        if (swiper.activeIndex == swiper.slides.length - 1) {
+          this.$refs.NextBtn.classList.add("fade");
+        }
+      },
       sliderOptions: {
         slidesPerView: 1,
         spaceBetweenSlides: 0,
@@ -182,11 +193,11 @@ export default {
         grabCursor: true,
         loop: false,
         lazy: false,
-        freeMode: true,
+        freeMode: false,
         autoplay: {
-          speed: 550,
+          speed: 850,
           autoplay: true,
-          delay: 5000,
+          delay: 10000,
           pauseOnMouseEnter: true,
         },
         Navigation: {
@@ -204,6 +215,10 @@ export default {
     prev() {
       this.swiper.slidePrev();
     },
+
+    setActive(event) {
+      event.target.classList.toggle("active");
+    },
   },
   components: {
     Swiper,
@@ -215,6 +230,9 @@ export default {
     return {
       modules: [Navigation, Autoplay],
     };
+  },
+  mounted() {
+    this.onSwiper(this.swiper);
   },
 };
 </script>
@@ -235,7 +253,7 @@ export default {
     position: absolute;
     top: -94px;
     right: 0;
-    width: 126px;
+    width: 116px;
     height: 54px;
 
     & .navigation__prev {
@@ -244,7 +262,18 @@ export default {
     & .navigation__next {
       right: 0;
     }
+
+    & .navigation__prev,
+    & .navigation__next {
+      &.fade {
+        opacity: 0.2;
+      }
+    }
   }
+}
+
+.dp-slider__navigation-btn {
+  background-color: $white;
 }
 
 .dp-slider-slider {
@@ -487,6 +516,7 @@ export default {
     padding: 3px 5px 3px 6px;
     border-radius: 50%;
     @include tr;
+    cursor: help;
   }
 
   &:hover {
@@ -643,10 +673,51 @@ export default {
   max-width: 400px;
 }
 
-.save-btn {
+@media screen and (max-width: 991px) {
+  .dp-slider-slider__item {
+    flex-direction: column;
+  }
+
+  .dp-preview-slider {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dp-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
-.compare-btn {
+
+@media screen and (max-width: 668px) {
+  .dp-sizes__blocks label {
+    margin-bottom: 5px;
+  }
+
+  .dp-actions__btns {
+    margin-right: 0;
+  }
 }
-.share-btn {
+
+@media screen and (max-width: 601px) {
+  .dp-details__prices {
+    margin-bottom: 10px;
+  }
+
+  .cart-btn,
+  .oneclick-buy-btn {
+    min-width: auto;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .dp-slider__navigation {
+    width: 80px;
+  }
+  .dp-slider__navigation .navigation__prev {
+    width: 30px;
+  }
 }
 </style>
