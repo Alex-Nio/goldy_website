@@ -1,8 +1,8 @@
 <template>
   <div class="goldy-logo">
-    <a class="goldy-logo__inner">
+    <router-link tag="a" to="/" class="goldy-logo__inner">
       <img src="@/assets/img/main-logo.svg" alt="Logo" />
-    </a>
+    </router-link>
   </div>
 </template>
 
