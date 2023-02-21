@@ -17,10 +17,14 @@
           <main-logo></main-logo>
         </div>
         <div class="content-top__item">
-          <signup-actions :signupButtons="signupButtons"></signup-actions>
+          <signup-actions
+            @showPopup="showPopup"
+            :signupButtons="signupButtons"
+          ></signup-actions>
         </div>
         <div class="content-top__item">
           <cart-actions
+            @showDefaultPopup="showDefaultPopup"
             @mobileMenuToggle="mobileMenuToggle"
             :cartActionsItems="cartActionsItems"
             :burgerOpen="burgerOpen"
@@ -125,6 +129,12 @@ export default {
   methods: {
     mobileMenuToggle() {
       this.$emit("mobileMenuToggle");
+    },
+    showPopup(e) {
+      this.$emit("showPopup", e);
+    },
+    showDefaultPopup(e) {
+      this.$emit("showDefaultPopup", e);
     },
   },
 };

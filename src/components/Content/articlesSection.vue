@@ -77,7 +77,7 @@ export default {
   width: 100%;
   &__inner {
     width: 100%;
-    margin-top: 120px;
+    margin: 120px 0 112px 0;
   }
 }
 

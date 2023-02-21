@@ -7,7 +7,6 @@
     <day-product></day-product>
     <articles-section></articles-section>
   </main>
-  <div style="height: 100vh" class="devider"></div>
 </template>
 
 <script>
@@ -17,6 +16,7 @@ import saleOut from "@/components/Content/saleOut";
 import bannersSection from "@/components/Content/bannersSection";
 import dayProduct from "@/components/Content/dayProduct";
 import articlesSection from "@/components/Content/articlesSection";
+
 export default {
   components: {
     mainSlider,

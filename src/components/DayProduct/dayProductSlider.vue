@@ -139,11 +139,21 @@
                   </div>
                   <div class="dp-actions-field">
                     <img src="@/assets/img/icons/compare-icon.svg" alt="icon" />
-                    <button @click.prevent class="field-btn compare-btn">Сравнить</button>
+                    <button
+                      @click.prevent="showDefaultPopup('compare')"
+                      class="field-btn compare-btn"
+                    >
+                      Сравнить
+                    </button>
                   </div>
                   <div class="dp-actions-field">
                     <img src="@/assets/img/icons/share-icon.svg" alt="icon" />
-                    <button @click.prevent class="field-btn share-btn">Поделиться</button>
+                    <button
+                      @click.prevent="showDefaultPopup('share')"
+                      class="field-btn share-btn"
+                    >
+                      Поделиться
+                    </button>
                   </div>
                 </div>
               </div>
@@ -218,6 +228,10 @@ export default {
 
     setActive(event) {
       event.target.classList.toggle("active");
+    },
+
+    showDefaultPopup(name) {
+      this.$emit("showDefaultPopup", name);
     },
   },
   components: {

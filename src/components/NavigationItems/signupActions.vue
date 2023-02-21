@@ -1,13 +1,22 @@
 <template>
   <div class="signup-actions">
-    <button class="login-action-btn" id="login">{{ signupButtons[0] }}</button>
-    <button class="signup-action-btn" id="signup">{{ signupButtons[1] }}</button>
+    <button @click.prevent="showPopup($event)" class="login-action-btn" id="login">
+      {{ signupButtons[0] }}
+    </button>
+    <button @click.prevent="showPopup($event)" class="signup-action-btn" id="signup">
+      {{ signupButtons[1] }}
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   props: ["signupButtons"],
+  methods: {
+    showPopup(e) {
+      this.$emit("showPopup", e);
+    },
+  },
 };
 </script>
 
@@ -52,6 +61,5 @@ export default {
 }
 
 @media screen and (max-width: 991px) {
-  
 }
 </style>

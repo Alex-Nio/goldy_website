@@ -5,7 +5,10 @@
         <div class="goldy-day-product__inner">
           <div class="goldy-day-product__content">
             <h2 class="section-title goldy-day-product__title">Товар дня</h2>
-            <day-product-slider :dpData="dpData"></day-product-slider>
+            <day-product-slider
+              @showDefaultPopup="showDefaultPopup"
+              :dpData="dpData"
+            ></day-product-slider>
           </div>
         </div>
       </div>
@@ -237,6 +240,11 @@ export default {
   },
   components: {
     dayProductSlider,
+  },
+  methods: {
+    showDefaultPopup(name) {
+      this.$emit("showDefaultPopup", name);
+    },
   },
 };
 </script>

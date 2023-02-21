@@ -6,7 +6,11 @@
         :key="item"
         class="cart-actions__list-item"
       >
-        <a @click.prevent :class="cartActionsItems[i]['dafaultClass']" href="#">
+        <a
+          @click.prevent="showDefaultPopup"
+          :class="cartActionsItems[i]['dafaultClass']"
+          href="#"
+        >
           <img
             :src="require(`@/${cartActionsItems[i]['iconSrc']}`)"
             :alt="cartActionsItems[i]['altTag']"
@@ -36,6 +40,9 @@ export default {
   methods: {
     mobileMenuToggle() {
       this.$emit("mobileMenuToggle");
+    },
+    showDefaultPopup(e) {
+      this.$emit("showDefaultPopup", e);
     },
   },
 };
