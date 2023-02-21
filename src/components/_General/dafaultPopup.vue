@@ -3,6 +3,7 @@
     <div class="popup-content">
       <h3 class="popup-content__title">Корзина</h3>
       <div class="popup-container">
+        <div @click="closeDefaultPopup" class="close-btn">Закрыть</div>
         <div class="popup-container__top">
           <div class="popup-container__row">
             <p class="popup-container__text">Ваша корзина</p>
@@ -48,6 +49,7 @@
   <div v-if="defaultPopupTrigger === 'chart'" class="popup">
     <div class="popup-content">
       <h3 class="popup-content__title">Сравнение товаров</h3>
+      <div @click="closeDefaultPopup" class="close-btn">Закрыть</div>
       <div class="popup-container">
         <div class="popup-container__top">
           <div class="popup-container__row">
@@ -95,6 +97,7 @@
     <div class="popup-content">
       <h3 class="popup-content__title">Избранное</h3>
       <div class="popup-container">
+        <div @click="closeDefaultPopup" class="close-btn">Закрыть</div>
         <div class="popup-container__top">
           <div class="popup-container__row">
             <p class="popup-container__text">Товары</p>
@@ -143,6 +146,7 @@
         © Наша работа — это безусловная любовь.
       </h3>
       <div class="popup-container">
+        <div @click="closeDefaultPopup" class="close-btn">Закрыть</div>
         <div style="text-align: left" class="popup-container__top">
           <div class="popup-container__row">
             <p class="popup-container__text"></p>
@@ -194,14 +198,29 @@
 <script>
 export default {
   props: ["defaultPopupTrigger"],
-  mounted() {
-    console.log(this.defaultPopupTrigger);
+  methods: {
+    closeDefaultPopup() {
+      this.$emit("closeDefaultPopup");
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/imports.scss";
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  @include tr;
+  cursor: pointer;
+
+  &:hover {
+    color: $secondary;
+    @include tr;
+  }
+}
 
 .popup {
   position: fixed;

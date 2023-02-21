@@ -17,6 +17,7 @@
       v-click-outside="popupToggle"
     ></register-popup>
     <default-popup
+      @closeDefaultPopup="closeDefaultPopup"
       :defaultPopupTrigger="defaultPopupTrigger"
       v-if="defaultPopupOpen"
     ></default-popup>
@@ -94,6 +95,10 @@ export default {
     showPopup(event) {
       this.popupOpen = true;
       this.trigger = event.target.id;
+    },
+
+    closeDefaultPopup() {
+      this.defaultPopupOpen = false;
     },
 
     popupToggle() {
